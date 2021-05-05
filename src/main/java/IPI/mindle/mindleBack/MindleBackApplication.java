@@ -7,8 +7,6 @@ import net.ravendb.client.documents.IDocumentStore;
 import net.ravendb.client.documents.conventions.DocumentConventions;
 import net.ravendb.client.documents.session.IDocumentSession;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,17 +20,18 @@ public class MindleBackApplication {
 
 	static IDocumentStore store;
 	static IDocumentSession session;
+	static IDocumentSession session2;
 
 	static listGenres genresList;
 
 	public static void main(String[] args) {
 		store = CreateStore();
 		session = store.openSession();
-		SpringApplication.run(MindleBackApplication.class, args);
-		genresList = session.load(listGenres.class, "1a891a7e-c074-4670-9d34-0dd4fa82c67c");
-		System.out.println("la liste contient : " + genresList.listGenres.size() + "genres");
+		CreateNewUser("Spotify ID");
+		//genresList = session.load(listGenres.class, "1a891a7e-c074-4670-9d34-0dd4fa82c67c");
+		//System.out.println("la liste contient : " + genresList.listGenres.size() + "genres");
 		//AddDataUsers("Bosanova");
-		GetMainGenres();
+		//GetMainGenres();
 	}
 
 	public static IDocumentStore CreateStore() {
@@ -45,9 +44,6 @@ public class MindleBackApplication {
 	public static void AddDataUsers(String NewGenres){
 		List<String> mainGenres = null;
 		for (sousGenres sousGenre: genresList.listGenres) {
-			/*System.out.println(sousGenre.Name);
-			System.out.println(sousGenre.Total);
-			System.out.println(sousGenre.Genre);*/
 			if(sousGenre.Name.equals(NewGenres)){
 				System.out.println("oui");
 				sousGenre.Total = sousGenre.Total + 1;
@@ -81,6 +77,14 @@ public class MindleBackApplication {
 			}
 		}
 		System.out.println(Totals);
+	}
+
+	public static void CreateNewUser(String id){
+		genresList = session.load(listGenres.class, "1a891a7e-c074-4670-9d34-0dd4fa82c67c");
+		listGenres NewUser = genresList;
+		session2 = store.openSession();
+		session2.store(NewUser,id);
+		session2.saveChanges();
 	}
 
 }
