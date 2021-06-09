@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.ipiecoles</groupId>
+  <artifactId>Mindle</artifactId>
+  <name>mindleBack</name>
+  <version>1.0</version>
+  <description>Application Back-end Mindle utilisation de RavenDB</description>
+  <url>http://ravendb.net</url>
+  <developers>
+    <developer>
+      <name>Dedola Marine</name>
+      <email>dedola.marine@ipilyon.net</email>
+    </developer>
+    <developer>
+      <name>Paiva Alexy</name>
+      <email>alexy.paiva@ipilyon.net</email>
+    </developer>
+  </developers>
+  <licenses>
+    <license>
+      <name>RavenDB License</name>
+      <url>https://github.com/ravendb/ravendb-jvm-testdriver/blob/v4.1/LICENSE</url>
+    </license>
+  </licenses>
+  <scm>
+    <connection>scm:git:https://github.com/ravendb/ravendb-jvm-testdriver.git</connection>
+    <developerConnection>scm:git:git@github.com:ravendb/ravendb-jvm-testdriver.git</developerConnection>
+    <tag>v5.0.2</tag>
+    <url>https://github.com/ravendb/ravendb-jvm-testdriver.git</url>
+  </scm>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.1.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration />
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.0.2</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>opentest4j</artifactId>
+          <groupId>org.opentest4j</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>junit-platform-commons</artifactId>
+          <groupId>org.junit.platform</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-test</artifactId>
+      <version>2.3.5.RELEASE</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <properties>
+    <activeProfile>default</activeProfile>
+    <raven.embedded.version>5.0.2</raven.embedded.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <junit.version>4.13</junit.version>
+    <junit.jupiter.version>5.0.2</junit.jupiter.version>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <junit.platform.version>1.0.2</junit.platform.version>
+  </properties>
+</project>

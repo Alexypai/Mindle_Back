@@ -1,4 +1,4 @@
-package IPI.mindle.mindleBack;
+package com.ipiecoles.mindleBack;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,6 +8,7 @@ class MindleBackApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
