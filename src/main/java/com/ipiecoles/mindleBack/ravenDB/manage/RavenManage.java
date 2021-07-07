@@ -7,12 +7,13 @@ import static com.ipiecoles.mindleBack.entity.listGenres.listMainGenres;
 import static com.ipiecoles.mindleBack.ravenDB.connexion.RavenCloudConnexion.session;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RavenManage {
 
     public static void AddDataUsers(listGenres Data, String Genres,Integer Choice){
-        List<String> mainGenres = null;
+        List<String> mainGenres = Collections.emptyList();
         for (sousGenres sousGenre: Data.listGenres) {
             if(sousGenre.name.equals(Genres)){
                 //System.out.println("oui");
@@ -30,7 +31,7 @@ public class RavenManage {
                 //System.out.println(mainGenres);
             }
         }
-        if (mainGenres.size() != 0 || mainGenres == null){
+        if (mainGenres.size() != 0){
             for (sousGenres sousGenre: Data.listGenres) {
                 for (String mainGenre : mainGenres){
                     if (mainGenre.equals(sousGenre.name)){
@@ -42,7 +43,7 @@ public class RavenManage {
                                 sousGenre.total = sousGenre.total - 1;
                                 break;
                             default:
-                                continue;
+
                         }
                     }
                 }
