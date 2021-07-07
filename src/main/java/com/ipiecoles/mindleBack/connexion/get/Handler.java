@@ -14,6 +14,9 @@ import java.util.Map;
 
 //import static com.ipiecoles.mindleBack.MindleBackApplication.GetData;
 import static com.ipiecoles.mindleBack.ravenDB.connexion.DataUser.GetRavenData;
+import static com.ipiecoles.mindleBack.ravenDB.connexion.RavenCloudConnexion.ConnexionRaven;
+import static com.ipiecoles.mindleBack.ravenDB.manage.RavenManage.AddDataUsers;
+import static com.ipiecoles.mindleBack.ravenDB.manage.RavenManage.GetMainGenres;
 import com.ipiecoles.mindleBack.entity.listGenres;
 
 
@@ -23,11 +26,12 @@ public class Handler implements RequestHandler<DataUser , DataOutput> {
     public DataOutput handleRequest(DataUser user, Context context) {
             String spotifyUserID = user.getSpotifyID();
             Integer status = user.getChoose();
+            String genre = user.getGenre();
             DataOutput Output = new DataOutput();
-            if (status.equals(3)) {
+            if (status.equals(0) || status.equals(1) || status.equals(2)) {
+                listGenres DataRavenUser = null;
                 try {
-                    listGenres RavenDataUser = GetRavenData(spotifyUserID,status);
-                    //Output.outputGenre =  GetData();
+                    DataRavenUser = ConnexionRaven(spotifyUserID);
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (KeyStoreException e) {
@@ -37,9 +41,11 @@ public class Handler implements RequestHandler<DataUser , DataOutput> {
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
-                Output.outputSpotifyID = spotifyUserID;
-                //Output.outputGenre = "Techno";
-                // Check si c'est deja un utilisateur
+                if (status != 0){
+                        AddDataUsers(DataRavenUser,genre, status);
+                    }
+                    Output.outputGenre = GetMainGenres(DataRavenUser);
+                    Output.outputSpotifyID = spotifyUserID;
             } else {
                 Output.outputSpotifyID = spotifyUserID;
                 Output.outputGenre = "Don't Work";

@@ -46,12 +46,12 @@ public class RavenCloudConnexion {
             Boolean ExistingUser = session.advanced().exists(SpotifyID);
             if (ExistingUser.equals(true)){
                  DataRavenUser = session.load(listGenres.class, SpotifyID);
-                System.out.println("Not New");
-                System.out.println(DataRavenUser.listGenres.toArray());
+                //System.out.println("Not New");
+                //System.out.println(DataRavenUser.listGenres.toArray());
             }else{
                 listGenres NewUser = session.load(listGenres.class, "ModelNewUser"); // id du document new utilisateur
                  DataRavenUser = ConnexionRavenNewUser(NewUser,SpotifyID);
-                System.out.println("New user");
+                //System.out.println("New user");
             }
         }
         return DataRavenUser;

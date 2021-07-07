@@ -16,7 +16,7 @@ import static com.ipiecoles.mindleBack.ravenDB.manage.RavenManage.GetMainGenres;
 public class DataUser {
 
     public static void main(String[] args) throws KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException {
-        GetRavenData("UserTest", 2);
+        GetRavenData("UserTest2", 2);
     }
 
     public static listGenres GetRavenData (String SpotifyID, Integer Choice) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException {
@@ -25,7 +25,7 @@ public class DataUser {
             AddDataUsers(DataRavenUser,"Afrobeat", Choice);
         }
         String NextGenre = GetMainGenres(DataRavenUser);
-        System.out.println(NextGenre);
+        //System.out.println(NextGenre);
         return DataRavenUser;
         }
 }

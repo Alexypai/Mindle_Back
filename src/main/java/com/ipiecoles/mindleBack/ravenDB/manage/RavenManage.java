@@ -15,7 +15,7 @@ public class RavenManage {
         List<String> mainGenres = null;
         for (sousGenres sousGenre: Data.listGenres) {
             if(sousGenre.name.equals(Genres)){
-                System.out.println("oui");
+                //System.out.println("oui");
                 switch(Choice) {                // Provisoire
                     case 1:
                         sousGenre.total = sousGenre.total + 1;
@@ -27,10 +27,10 @@ public class RavenManage {
                         continue;
                 }
                 mainGenres = sousGenre.genre;
-                System.out.println(mainGenres);
+                //System.out.println(mainGenres);
             }
         }
-        if (mainGenres.size() != 0){
+        if (mainGenres.size() != 0 || mainGenres == null){
             for (sousGenres sousGenre: Data.listGenres) {
                 for (String mainGenre : mainGenres){
                     if (mainGenre.equals(sousGenre.name)){
@@ -74,8 +74,8 @@ public class RavenManage {
         if (MainGenreDemo.equals("") || SizeDemo.equals(0)){
             MainGenreDemo =  "World-Music";
         }
-        System.out.println(MainGenreDemo);
-        System.out.println(Totals);
+        //System.out.println(MainGenreDemo);
+        //System.out.println(Totals);
 
         return MainGenreDemo;
     }
