@@ -18,6 +18,8 @@ public static sousGenres ApplyData (Integer Choice, sousGenres UpdateGenreUser, 
                 UpdateGenreUser.total = UpdateGenreUser.total + 3*Switch;
                 System.out.println("Genre +"+ 3*Switch + " " + UpdateGenreUser.name);
                 break;
+            default:
+                break;
         }
         return UpdateGenreUser;
     }

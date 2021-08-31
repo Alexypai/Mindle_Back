@@ -18,10 +18,8 @@ public class RavenCloudConnexion {
     static final String URL = "https://a.free.mindle.ravendb.cloud/";
     static final String DATABASE = "mindle";
     public static IDocumentSession session;
+    public static IDocumentSession session2;
 
-    public static void main(String[] args) throws KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException {
-
-    }
 
     public static KeyStore GetCert () throws KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException {
         KeyStore clientStore = KeyStore.getInstance("PKCS12");
@@ -35,7 +33,7 @@ public class RavenCloudConnexion {
     public static listGenres ConnexionRaven(String SpotifyID) throws IOException, KeyStoreException, CertificateException, NoSuchAlgorithmException {
 
         KeyStore clientStore = GetCert();
-        listGenres DataRavenUser = null;
+        listGenres DataRavenUser;
 
         try (DocumentStore store = new DocumentStore()) {
             store.setCertificate(clientStore);
@@ -46,12 +44,9 @@ public class RavenCloudConnexion {
             Boolean ExistingUser = session.advanced().exists(SpotifyID);
             if (ExistingUser.equals(true)){
                  DataRavenUser = session.load(listGenres.class, SpotifyID);
-                //System.out.println("Not New");
-                //System.out.println(DataRavenUser.listGenres.toArray());
             }else{
                 listGenres NewUser = session.load(listGenres.class, "ModelNewUser"); // id du document new utilisateur
                  DataRavenUser = ConnexionRavenNewUser(NewUser,SpotifyID);
-                //System.out.println("New user");
             }
         }
         return DataRavenUser;
@@ -66,8 +61,8 @@ public class RavenCloudConnexion {
             store.setDatabase(DATABASE);
             store.setUrls(new String[]{URL});
             store.initialize();
-            IDocumentSession session2 = store.openSession();
 
+            session2 = store.openSession();
             session2.store(NewUser,SpotifyID);
             session2.saveChanges();
             return ConnexionRaven(SpotifyID);

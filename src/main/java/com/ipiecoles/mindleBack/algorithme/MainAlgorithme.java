@@ -98,9 +98,6 @@ public class MainAlgorithme {
                     if (sousGenre.total >= 150) {
                         superLike = true;
                     }
-                    if (sousGenre.total < 0) {
-                        dislike = dislike + 1;
-                    }
                     Totals.add(Provisoire);
                 }
             }
@@ -115,13 +112,7 @@ public class MainAlgorithme {
             if (superLike) {
                 randomChoice = 3;
             }
-            if (dislike.equals(22)) {
-                randomChoice = 4;
-            }
-            if (like.equals(22)) {
-                randomChoice = 5;
-            }
-
+            // Si tous les genres sont aimer ou non, conserve le null pour passer dans le sxitch default de getRandomChoice
         }
 
         System.out.println(Totals);
@@ -174,6 +165,15 @@ public class MainAlgorithme {
             case 5:
                 result = getGenreByDefault(dataUser,true);
                 break;
+            default:
+                result = getGenreByDefault(dataUser,true);
+                if (result == null) {
+                    result = getGenreByDefault(dataUser, false);
+                }
+                break;
+
+
+
         }
         return result;
     }
