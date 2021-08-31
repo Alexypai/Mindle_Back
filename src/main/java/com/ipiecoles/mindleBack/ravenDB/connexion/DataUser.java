@@ -20,9 +20,9 @@ public class DataUser {
     public static listGenres GetRavenData (String SpotifyID, Integer Choice) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException {
         listGenres DataRavenUser = ConnexionRaven(SpotifyID);
         if (Choice != 0){
-            AddDataUsers(DataRavenUser,"bossanova", Choice);
-            GetRandomChoice(DataRavenUser);
-            String result = RandomFunction(DataRavenUser);
+            //AddDataUsers(DataRavenUser,"bossanova", Choice);
+            String result = MainMethode(DataRavenUser,"bossanova",Choice,SpotifyID);
+
             System.out.println(result);
         }
         //String NextGenre = GetMainGenres(DataRavenUser);

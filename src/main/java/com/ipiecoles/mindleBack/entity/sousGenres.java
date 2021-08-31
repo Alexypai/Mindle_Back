@@ -30,10 +30,14 @@ public class sousGenres {
         this.genre = genre;
     }
 
-    /*    public sousGenres(String name, Integer total, List<String> genre) {
+    public sousGenres() {
+
+    }
+
+    public sousGenres(String name, Integer total, List<String> genre) {
         this.name = name;
         this.total = total;
         this.genre = genre;
-    }*/
+    }
 
 }

@@ -14,6 +14,14 @@ public class listGenres {
         this.listGenres = listGenres;
     }
 
+    public listGenres(){
+
+    }
+
+    public listGenres(List<sousGenres> listGenres) {
+        this.listGenres = listGenres;
+    }
+
     public static final List<String> listMainGenres =
             Arrays.asList(
                     "jazz",
