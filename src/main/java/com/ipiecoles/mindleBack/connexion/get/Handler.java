@@ -13,10 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 //import static com.ipiecoles.mindleBack.MindleBackApplication.GetData;
-import static com.ipiecoles.mindleBack.ravenDB.connexion.DataUser.GetRavenData;
 import static com.ipiecoles.mindleBack.ravenDB.connexion.RavenCloudConnexion.ConnexionRaven;
-import static com.ipiecoles.mindleBack.ravenDB.manage.RavenManage.AddDataUsers;
-import static com.ipiecoles.mindleBack.ravenDB.manage.RavenManage.GetMainGenres;
+import static com.ipiecoles.mindleBack.algorithme.MainAlgorithme.AddDataUsers;
+//import static com.ipiecoles.mindleBack.algorithme.RavenManage.GetMainGenres;
 import com.ipiecoles.mindleBack.entity.listGenres;
 
 
@@ -28,7 +27,7 @@ public class Handler implements RequestHandler<DataUser , DataOutput> {
             Integer status = user.getChoose();
             String genre = user.getGenre();
             DataOutput Output = new DataOutput();
-            if (status.equals(0) || status.equals(1) || status.equals(2)) {
+            if (status.equals(0) || status.equals(1) || status.equals(2) || status.equals(3)) {
                 listGenres DataRavenUser = null;
                 try {
                     DataRavenUser = ConnexionRaven(spotifyUserID);
@@ -44,7 +43,7 @@ public class Handler implements RequestHandler<DataUser , DataOutput> {
                 if (status != 0){
                         AddDataUsers(DataRavenUser,genre, status);
                     }
-                    Output.outputGenre = GetMainGenres(DataRavenUser);
+                    //Output.outputGenre = GetMainGenres(DataRavenUser);
                     Output.outputSpotifyID = spotifyUserID;
             } else {
                 Output.outputSpotifyID = spotifyUserID;

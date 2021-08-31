@@ -1,13 +1,5 @@
 package com.ipiecoles.mindleBack;
 
-import com.ipiecoles.mindleBack.entity.sousGenres;
-import com.ipiecoles.mindleBack.entity.listGenres;
-import net.ravendb.client.documents.DocumentStore;
-import net.ravendb.client.documents.IDocumentStore;
-import net.ravendb.client.documents.session.IDocumentSession;
-import org.checkerframework.common.reflection.qual.GetClass;
-import org.springframework.core.io.ClassPathResource;
-
 /*
 
 import java.io.File;
