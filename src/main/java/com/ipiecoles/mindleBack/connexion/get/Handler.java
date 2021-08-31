@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 //import static com.ipiecoles.mindleBack.MindleBackApplication.GetData;
-import static com.ipiecoles.mindleBack.algorithme.MainAlgorithme.MainMethode;
+import static com.ipiecoles.mindleBack.algorithme.MainAlgorithme.mainMethode;
 import static com.ipiecoles.mindleBack.ravenDB.connexion.RavenCloudConnexion.ConnexionRaven;
 //import static com.ipiecoles.mindleBack.algorithme.RavenManage.GetMainGenres;
 import com.ipiecoles.mindleBack.entity.listGenres;
@@ -36,7 +36,7 @@ public class Handler implements RequestHandler<DataUser , DataOutput> {
                 }
                 if (status != 0){
                     try {
-                        String result = MainMethode(DataRavenUser,genre,status,spotifyUserID);
+                        String result = mainMethode(DataRavenUser,genre,status,spotifyUserID);
                         Output.outputGenre = result;
                     } catch (CertificateException | NoSuchAlgorithmException | KeyStoreException | IOException e) {
                         e.printStackTrace();

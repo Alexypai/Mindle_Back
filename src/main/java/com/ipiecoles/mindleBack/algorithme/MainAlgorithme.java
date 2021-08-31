@@ -22,7 +22,7 @@ public class MainAlgorithme {
 
     static Random random = new Random();
 
-    public static String MainMethode(listGenres dataUser, String genres, Integer choice,String spotifyID) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException {
+    public static String mainMethode(listGenres dataUser, String genres, Integer choice,String spotifyID) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException {
         addDataUsers(dataUser,genres, choice);
         listGenres updateList = ConnexionRaven(spotifyID);
         Integer RandomCalc = getRandomChoice(updateList);
@@ -91,28 +91,23 @@ public class MainAlgorithme {
                     Provisoire.add(sousGenre.total.toString());
                     if (sousGenre.total.equals(0)) {
                         nullableGenre = true;
+                        randomChoice = 0;
                     }
-                    if (sousGenre.total > 0) {
+                    if (sousGenre.total > 0 && !nullableGenre) {
                         like = like + 1;
+                        if (like > 3) {
+                            randomChoice = 2;
+                        }
                     }
-                    if (sousGenre.total >= 150) {
-                        superLike = true;
+                    if (sousGenre.total >= 150 && !nullableGenre) {
+                        randomChoice = 3;
                     }
                     Totals.add(Provisoire);
                 }
             }
         }
-        if (nullableGenre) {
-            randomChoice = 0;
-        } else {
+        if (randomChoice == null){
             randomChoice = 1;
-            if (like > 3) {
-                randomChoice = 2;
-            }
-            if (superLike) {
-                randomChoice = 3;
-            }
-            // Si tous les genres sont aimer ou non, conserve le null pour passer dans le sxitch default de getRandomChoice
         }
 
         System.out.println(Totals);
@@ -158,12 +153,6 @@ public class MainAlgorithme {
                 }else if (pourcentRand >= 50){
                     result = getBestGenre(dataUser);
                 }
-                break;
-            case 4:
-                result = getGenreByDefault(dataUser,false);
-                break;
-            case 5:
-                result = getGenreByDefault(dataUser,true);
                 break;
             default:
                 result = getGenreByDefault(dataUser,true);

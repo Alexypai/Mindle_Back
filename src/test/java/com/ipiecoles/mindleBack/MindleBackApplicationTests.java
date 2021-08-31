@@ -1,4 +1,4 @@
-package com.ipiecoles.mindleBack;
+/*package com.ipiecoles.mindleBack;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,4 +11,4 @@ class MindleBackApplicationTests {
 
 	}
 
-}
+}*/
